@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Adoption, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should persist adoption' do
+    adoption = FactoryBot.build(:adoption)
+    expect(adoption).to be_valid
+  end
 end
