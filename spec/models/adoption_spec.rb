@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-
-adoption = FactoryBot.build(:adoption)
-puts adoption.name
-
 RSpec.describe Adoption, type: :model do
   context 'Validates' do
     it 'should persist Adoption' do
