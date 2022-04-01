@@ -1,3 +1,7 @@
 class Adoption < ApplicationRecord
-  has_one :review, dependent: :destroy
+  belongs_to :user
+  belongs_to :tree
+  has_one :review
+
+  validates :name, presence: true
 end
