@@ -80,6 +80,4 @@ RSpec.describe Tree, type: :model do
       expect(tree.errors.full_messages).to include("Description is too short (minimum is 20 characters)")
     end
   end
-
-
 end
