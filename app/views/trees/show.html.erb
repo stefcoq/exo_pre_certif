@@ -22,7 +22,7 @@
     </div>
 
     <%# unless current_user == @tree.user %>
-      <%= render 'shared/form_adoption', locales: [ @tree, Adoption.new ]%>
+      <%#= render 'shared/form_adoption', locales: [ @tree, Adoption.new ]%>
     <%# end %>
   </div>
 
@@ -56,3 +56,5 @@
   </div>
 
 </div>
+
+<%= render "form_adoption", tree: @tree, adoption: Adoption.new %>
