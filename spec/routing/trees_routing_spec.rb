@@ -23,10 +23,6 @@ RSpec.describe TreesController, type: :routing do
       expect(post: "/trees").to route_to("trees#create")
     end
 
-    # it "routes to #update via PUT" do
-    #   expect(put: "/trees/1").to route_to("trees#update", id: "1")
-    # end
-
     it "routes to #update" do
       expect(patch: "/trees/1").to route_to("trees#update", id: "1")
     end
