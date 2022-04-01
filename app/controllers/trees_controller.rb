@@ -27,7 +27,7 @@ class TreesController < ApplicationController
   end
 
   def create
-    @user = current_user
+    @user = User.first
     @tree = Tree.new(tree_params)
     @tree.user = @user
     if @tree.save
@@ -38,7 +38,6 @@ class TreesController < ApplicationController
   end
 
   def edit
-    redirect_to tree_path(@tree) unless @tree.user == current_user
   end
 
   def update
