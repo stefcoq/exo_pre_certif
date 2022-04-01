@@ -1,70 +1,63 @@
 class TreesController < ApplicationController
-  before_action :set_tree, only: %i[ show edit update destroy ]
+  before_action :set_tree, only: %i[edit update show]
 
-  # GET /trees or /trees.json
   def index
     @trees = Tree.all
+    if params[:query].present?
+      @trees = Tree.all.where("address ILIKE ?", "%#{params[:query]}%")
+      if @trees.count == 0
+        @trees = Tree.all
+        flash.alert = "no tree in #{params[:query]}.."
+      end
+    end
+
+    # @markers = @trees.geocoded.map do |tree|
+    #   {
+    #     lat: tree.latitude,
+    #     lng: tree.longitude
+    #   }
+    # end
   end
 
-  # GET /trees/1 or /trees/1.json
   def show
   end
 
-  # GET /trees/new
   def new
     @tree = Tree.new
   end
 
-  # GET /trees/1/edit
-  def edit
-  end
-
-  # POST /trees or /trees.json
   def create
+    @user = current_user
     @tree = Tree.new(tree_params)
-
-    respond_to do |format|
-      if @tree.save
-        format.html { redirect_to tree_url(@tree), notice: "Tree was successfully created." }
-        format.json { render :show, status: :created, location: @tree }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tree.errors, status: :unprocessable_entity }
-      end
+    @tree.user = @user
+    if @tree.save
+      redirect_to tree_path(@tree)
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /trees/1 or /trees/1.json
+  def edit
+    redirect_to tree_path(@tree) unless @tree.user == current_user
+  end
+
   def update
-    respond_to do |format|
-      if @tree.update(tree_params)
-        format.html { redirect_to tree_url(@tree), notice: "Tree was successfully updated." }
-        format.json { render :show, status: :ok, location: @tree }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @tree.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /trees/1 or /trees/1.json
-  def destroy
-    @tree.destroy
-
-    respond_to do |format|
-      format.html { redirect_to trees_url, notice: "Tree was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @tree.update(tree_params)
+    redirect_to tree_path(@tree)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tree
-      @tree = Tree.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tree_params
-      params.fetch(:tree, {})
-    end
+  def tree_params
+    params.require(:tree).permit(:name,
+                                 :address,
+                                 :price,
+                                 :quantity_by_year,
+                                 :fruit,
+                                 :description)
+  end
+
+  def set_tree
+    @tree = Tree.find(params[:id])
+  end
 end

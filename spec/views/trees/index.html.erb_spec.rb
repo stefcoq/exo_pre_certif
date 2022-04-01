@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "trees/index", type: :view do
   before(:each) do
     assign(:trees, [
-      Tree.create!(),
-      Tree.create!()
+      FactoryBot.create(:tree),
+      FactoryBot.create(:tree)
     ])
   end
 
