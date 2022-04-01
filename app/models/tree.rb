@@ -1,5 +1,6 @@
 class Tree < ApplicationRecord
   belongs_to :user
+  has_many :adoptions, dependent: :destroy
 
   validates :name, :price, :address, :quantity_by_year, :fruit, :description, presence: true
   validates :price, numericality: { greater_than: 0 }
@@ -22,5 +23,4 @@ class Tree < ApplicationRecord
                                       "Pear",
                                       "Plum"]
   }
-
 end
