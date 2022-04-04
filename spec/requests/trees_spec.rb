@@ -4,14 +4,15 @@ RSpec.describe TreesController, type: :request do
     it "creates a tree and redirects to the tree's page" do
 
       get "/trees/new"
-      expect(response).to render_template(:new)
+      expect(response).to render_template("trees/new")
       expect(response).to_not render_template(:show)
 
+      Tree.destroy_all
       post "/trees", :params => { tree: FactoryBot.build(:tree).attributes  }
+      expect(assigns(:tree)).to be_a(Tree)
+      expect(assigns(:tree)).to be_persisted
       expect(response).to redirect_to(assigns(:tree))
-      follow_redirect!
-
-      expect(response).to render_template(:show)
+      expect(Tree.count).to eq(1)
     end
 
     it "updates a tree and redirects to the good tree's page" do
@@ -23,6 +24,9 @@ RSpec.describe TreesController, type: :request do
 
       patch "/trees/#{tree.id}", :params => { tree: tree.attributes }
       expect(response).to redirect_to(assigns(:tree))
+      expect(assigns(:tree)).to be_a(Tree)
+      expect(assigns(:tree)).to be_persisted
+
       follow_redirect!
 
       expect(response).to render_template(:show)
