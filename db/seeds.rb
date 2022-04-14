@@ -12,9 +12,9 @@ Tree.destroy_all
 
 puts "Creating users..."
 
-paul = User.create(email: 'paul@localhost.me', password: '123456')
-jo = User.create(email: 'josephine@arbre.com', password: '123456')
-ben = User.create(email: 'ben@arbre.fr', password: 'secret')
+paul = User.create(email: 'paul@localhost.me', password: '123456', first_name: 'Paul', last_name: 'Schauss')
+jo = User.create(email: 'josephine@arbre.com', password: '123456', first_name: 'Josephine', last_name: 'Lazzone')
+ben = User.create(email: 'ben@arbre.fr', password: 'secret', first_name: 'Benjamin', last_name: 'Coca-Cola')
 
 puts "Created Paul, Jo and Ben"
 
