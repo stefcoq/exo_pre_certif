@@ -1,6 +1,6 @@
 class TreesController < ApplicationController
   before_action :set_tree, only: %i[edit update show]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :new, :edit]
 
   def index
     @trees = Tree.all
@@ -43,7 +43,12 @@ class TreesController < ApplicationController
 
   def update
     @tree.update(tree_params)
-    redirect_to tree_path(@tree)
+    if @tree.save
+      redirect_to tree_path(@tree)
+    else
+      render :edit
+    end
+
   end
 
   private
