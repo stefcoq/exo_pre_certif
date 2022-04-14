@@ -27,7 +27,7 @@ class TreesController < ApplicationController
   end
 
   def create
-    @user = User.first
+    @user = current_user
     @tree = Tree.new(tree_params)
     @tree.user = @user
     if @tree.save
