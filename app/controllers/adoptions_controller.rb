@@ -3,7 +3,7 @@ class AdoptionsController < ApplicationController
     @tree = Tree.find(params[:tree_id])
     @adoption = Adoption.new(adoption_params)
     @adoption.tree = @tree
-    @adoption.user = User.first
+    @adoption.user = current_user
     # @adoption.starts_at = Time.now.to_date
     # @adoption.ends_at = Time.now.to_date + 1.year
     if @adoption.save

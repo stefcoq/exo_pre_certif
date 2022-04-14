@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe TreesController, type: :request do
   describe "controller" do
     it "creates a tree and redirects to the tree's page" do
@@ -8,7 +9,9 @@ RSpec.describe TreesController, type: :request do
       expect(response).to_not render_template(:show)
 
       Tree.destroy_all
-      post "/trees", :params => { tree: FactoryBot.build(:tree).attributes  }
+      @user = FactoryBot.create(:user)
+      sign_in @user
+      post "/trees", :params => { tree: FactoryBot.build(:tree).attributes }
       expect(assigns(:tree)).to be_a(Tree)
       expect(assigns(:tree)).to be_persisted
       expect(response).to redirect_to(assigns(:tree))
@@ -39,6 +42,7 @@ RSpec.describe TreesController, type: :request do
     end
 
     it "the show render the good template" do
+      FactoryBot.create(:tree)
       get "/trees/#{Tree.last.id}"
       expect(response).not_to render_template(:index)
       expect(response).to render_template(:show)
