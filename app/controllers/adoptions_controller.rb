@@ -8,7 +8,10 @@ class AdoptionsController < ApplicationController
     @adoption.ends_at = Time.now.to_date + 1.year
     if @adoption.save
       redirect_to tree_path(@tree)
+    else
+      render 'trees/show'
     end
+
 
   end
 
