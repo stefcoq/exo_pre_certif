@@ -1,5 +1,5 @@
 {
-  "name": "adopte-un-arbre-rspec",
+  "name": "exercice-adopte-un-arbre",
   "private": true,
   "dependencies": {
     "@popperjs/core": "^2.11.4",
