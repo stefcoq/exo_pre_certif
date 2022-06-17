@@ -11,6 +11,8 @@ module AdopteUnArbreRspec
     config.generators do |generate|
       generate.assets false
       generate.helper false
+
+      generate.test_framework false
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
