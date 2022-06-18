@@ -13,7 +13,13 @@ module AdopteUnArbreRspec
       generate.helper false
 
       generate.test_framework false
+
     end
+
+    config.i18n.available_locales = %i[fr en]
+    config.i18n.default_locale = :fr
+    config.fallbacks = true
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
