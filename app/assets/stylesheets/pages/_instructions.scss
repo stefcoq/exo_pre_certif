@@ -1,12 +1,33 @@
 .instructions-container {
-  padding: 1vh 3.6vh;
+  padding: 1vh 4.3vh;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  .title {
-    font-size: 1.5em;
+  .big-title {
+    font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 1em;
+    color: rgba(0, 0, 0, 0.858);
+  }
+  .title {
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.803);
+  }
+  .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.784);
+    &.feature {
+      font-size: 1.2em;
+    }
+  }
+  .paragraphe {
+    font-size: 1em;
+    margin-bottom: 1em;
+    color: rgba(0, 0, 0, 0.749);
   }
 }
