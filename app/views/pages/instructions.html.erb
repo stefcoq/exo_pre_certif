@@ -1,63 +1,134 @@
-<%# <p class="title">Subject : Créer une application rails permettant à des maraîchers de louer leurs arbres fruitiers à des particuliers.</p>
-<p class="subtitle">
-  Effectuez les modifications du code nécessaires à l’implémentation des parcours utilisateurs suivants :
-</p>
-
-<ul>
-  <li> En tant qu’utilisateur, je peux accéder à la page d’accueil.</li>
-  <li> En tant qu’utilisateur, je peux voir la liste de tous les arbres.</li>
-  <li> En tant qu’utilisateur, je peux ajouter plusieurs arbres.</li>
-  <li> En tant qu’utilisateur, je peux accéder aux détails d’un arbre.</li>
-  <li> En tant qu’utilisateur, je peux adopter plusieurs arbres (1 par 1).</li>
-  <li> En tant qu’utilisateur, je peux voir mes adoptions.</li>
-  <li> En tant qu’adoptant, je ne peux pas annuler mon adoption.</li>
-  <li> En tant que propriétaire, je peux modifier mon arbre.</li>
-  <li> En tant que propriétaire, je peux supprimer mon arbre.</li>
-</ul>
-
-<p class="title">Create the Schema DB</p>
-
-<p class="subtitle">Here are the requirements of our system:</p>
-
-<ul>
-  <li> The application manages several users.</li>
-  <li> A user can create many trees, but a tree is created by only one user.</li>
-  <li> A user can adopt a tree.</li>
-  <li> A user who has made an adoption can add a review on it.</li>
-</ul> %>
 <div class="instructions-container">
-  <p class="title">Create the DB (Schema DB)</p>
+  <p class="big-title">1- Create the DB (Schema DB)</p>
 
-  <p class="subtitle">Associations</p>
+  <p class="title">Associations</p>
 
   <ul>
-    <li>A user can create many trees, but a tree is created by only one user.</li>
-    <li>A user can adopt a tree.</li>
-    <li>A user who has made an adoption can add a review on it.</li>
+    <li class="paragraphe">A user can create many trees, but a tree is created by only one user.</li>
+    <li class="paragraphe">A user can adopt a tree.</li>
+    <li class="paragraphe">A user who has made an adoption can add a review on it.</li>
   </ul>
 
-  For now your schema should look like this:
+  <p class="paragraphe">For now your schema should look like this:</p>
 
   <img src="" alt="schema">
 
 
-  <p class="title">Développer une application web</p>
+  <p class="big-title">2- Développer une application web</p>
 
-  <p>Voici le parcours utilisateurs :</p>
+  <p class="title">Models and Migrations</p>
+
+  <p class="paragraphe">La gem devise a déjà été ajoutée et la table users a déjà été créée.</p>
+
+  <p class="subtitle">Generate the Tree model through the right rails generator. It should have the following columns.</p>
 
   <ul>
-    <li>En tant qu’utilisateur, je peux accéder à la page d’accueil.</li>
-    <li>En tant qu’utilisateur, je peux voir la liste de tous les arbres.</li>
-    <li>En tant qu’utilisateur, je peux ajouter plusieurs arbres.</li>
-    <li>En tant qu’utilisateur, je peux accéder aux détails d’un arbre.</li>
-    <li>En tant qu’utilisateur, je peux adopter plusieurs arbres (1 par 1).</li>
-    <li>En tant qu’utilisateur, je peux voir mes adoptions.</li>
-    <li>En tant qu’adoptant, je ne peux pas annuler mon adoption.</li>
-    <li>En tant que propriétaire, je peux modifier mon arbre.</li>
-    <li>En tant que propriétaire, je peux supprimer mon arbre.</li>
+     <li>name, as a string</li>
+     <li>address, as a string</li>
+     <li>description, as a text</li>
+     <li>price_per_year, as an integer</li>
+     <li>fruits, as a string</li>
+     <li>quantity_by_year, as an integer</li>
+  </ul>
+
+  <p class="paragraphe">Don’t forget that the Tree has to be attached to a User.</p>
+
+  <p class="paragraphe">La suppression d’un arbre doit entraîner la suppression de ses adoptions.</p>
+
+
+
+  <p class="subtitle">Generate the Adoption model through the right rails generator. It should have the following columns.</p>
+
+  <ul>
+    <li>name, as a string</li>
+    <li>starts_at, as a date</li>
+    <li>ends_at, as a date</li>
+  </ul>
+
+  <p class="paragraphe">Don’t forget that the Adoption has to be attached to a User and can have a Review.</p>
+
+  <p class="paragraphe">La suppression d’une adoption doit entraîner la suppression de ses reviews.</p>
+
+
+  <p class="subtitle">Generate the Review model through the right rails generator. It should have the following columns.</p>
+
+  <ul>
+    <li>content, as a text</li>
+    <li>rating, as an integer</li>
+  </ul>
+
+  <p class="paragraphe">Don’t forget that the Review has to be attached to an Adoption and a User.</p>
+
+  <p class="subtitle">Add fields to a user through the right rails generator</p>
+
+  <ul>
+    <li>first_name, as a string</li>
+    <li>last_name, as a string</li>
+  </ul>
+
+  <p class="paragraphe">La suppression d’un utilisateur doit entraîner la suppression de ses arbres et de ses adoptions.</p>
+
+
+  <p class="title">Validates</p>
+
+  <p class="subtitle">a tree isn’t valid :</p>
+
+  <ul>
+    <li>S’il n’a pas de nom.</li>
+    <li>S’il n’a pas d’adresse.</li>
+    <li>S’il n’a pas de fruit.</li>
+    <li>S’il n’a pas de description.</li>
+    <li>S’il n’a pas de quantité par année.</li>
+    <li>A fruit must belong to this fixed list : “Apple”, “Apricot”, “Cherry”, “Chestnut”,  “Coconut tree”, “Fig”, “Grapefruit”, “Hazel”, “Mandarin”, “Mango”, “Mirabellier”, “Mulberry”, “Olivier”, “Orange”, “Pear”, “Plum”.</li>
+    <li>Si sa description fait moins de 20 ou plus de 280 caractères.</li>
+    <li>Si sa quantité par année est inférieure ou égale à 0.</li>
+    <li>Si son prix est inférieur ou égale à 0.</li>
+  </ul>
+
+  <p class="subtitle">an adoption isn’t valid :</p>
+
+  <ul>
+    <li>Si elle n’a pas de date de début.</li>
+    <li>Si elle n’a pas de date de fin.</li>
   </ul>
 
 
+  <p class="subtitle">a review isn’t valid :</p>
 
-  <p class="title">Déployer une application web</p>
+  <ul>
+    <li>Si elle n’a pas de rating</li>
+    <li>Son rating doit être un entier contenu entre 0 et 5 inclus.</li>
+    <li>Si elle n’a pas de description</li>
+    <li>Si sa description fait moins de 3 ou plus de 114 caractères.</li>
+  </ul>
+
+  <p class="title">Seed</p>
+
+  <p class="paragraphe">Let’s create some trees in the rails console or even better, let’s build a little for our app. This will help us to get started designing the views, even though we can’t actually add a tree through our website. In the db/seeds.rb file, let’s create around 4 trees. Here is one to get you started.</p>
+
+  <div class="seed">
+    <p>
+      john = User.create!(first_name: 'John', first_name: 'Doe', password: 'secret', email: 'john@gmail.com')
+    </p>
+  </div>
+  <p class="title">Controllers & Routes</p>
+  <p class="title">Features</p>
+
+  <p class="subtitle feature">As a user, I can see all available trees</p>
+  <p class="subtitle feature">As a user, I can add a tree</p>
+  <p class="subtitle feature">As a user, I can see detailed information of a given tree</p>
+  <p class="subtitle feature">As a user, I can edit the details of a tree</p>
+  <p class="subtitle feature">As a user, I can delete a tree from the website</p>
+  <p class="subtitle feature">As a user, I can adopt a tree</p>
+  <p class="subtitle feature">As a user, I can see my adoptions (optional)</p>
+  <p class="subtitle feature">Adding photo to the tree model with cloudinary (optional)</p>
+  <p class="subtitle feature">Adding geocoding (optional)</p>
+  <p class="subtitle feature">Filtering trees by address with a search (optional)</p>
+  <p class="subtitle feature">Filtering trees by fruits with ajax (optional)</p>
+
+
+
+  <p class="big-title">3- Déployer une application web</p>
+
+
 </div>
