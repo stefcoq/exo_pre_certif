@@ -20,10 +20,10 @@ RSpec.describe Tree, type: :model do
       expect(tree.errors.full_messages).to include("Name can't be blank")
     end
 
-    it 'should not persist Tree without price' do
-      tree = FactoryBot.build(:tree, price: nil)
+    it 'should not persist Tree without price_per_year' do
+      tree = FactoryBot.build(:tree, price_by_year: nil)
       tree.validate
-      expect(tree.errors.full_messages).to include("Price can't be blank")
+      expect(tree.errors.full_messages).to include("Price by year can't be blank")
     end
 
     it 'should not persist Tree without address' do
@@ -56,13 +56,13 @@ RSpec.describe Tree, type: :model do
       expect(tree.errors.full_messages).to include("Fruit is not included in the list")
     end
 
-    it 'should not persist Tree with invalid price' do
-      tree = FactoryBot.build(:tree, price: -1)
-      tree_zero = FactoryBot.build(:tree, price: 0)
+    it 'should not persist Tree with invalid price by year' do
+      tree = FactoryBot.build(:tree, price_by_year: -1)
+      tree_zero = FactoryBot.build(:tree, price_by_year: 0)
       tree.validate
       tree_zero.validate
-      expect(tree.errors.full_messages).to include("Price must be greater than 0")
-      expect(tree_zero.errors.full_messages).to include("Price must be greater than 0")
+      expect(tree.errors.full_messages).to include("Price by year must be greater than 0")
+      expect(tree_zero.errors.full_messages).to include("Price by year must be greater than 0")
     end
 
     it 'should not persist Tree with invalid quantity_by_year' do
