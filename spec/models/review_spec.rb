@@ -20,10 +20,10 @@ RSpec.describe Review, type: :model do
       expect(review.errors.full_messages).to include("Adoption must exist")
     end
 
-    it 'should not persist Review without description' do
-      review = FactoryBot.build(:review, description: nil)
+    it 'should not persist Review without content' do
+      review = FactoryBot.build(:review, content: nil)
       review.validate
-      expect(review.errors.full_messages).to include("Description can't be blank")
+      expect(review.errors.full_messages).to include("Content can't be blank")
     end
 
     it 'should not persist Review without rating' do
@@ -39,9 +39,9 @@ RSpec.describe Review, type: :model do
     end
 
     it 'should not persist Review with invalid description' do
-      review = FactoryBot.build(:review, description: 'a' * 281)
+      review = FactoryBot.build(:review, content: 'a' * 281)
       review.validate
-      expect(review.errors.full_messages).to include("Description is too long (maximum is 280 characters)")
+      expect(review.errors.full_messages).to include("Content is too long (maximum is 280 characters)")
     end
   end
 end
