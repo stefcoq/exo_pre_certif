@@ -1,8 +1,16 @@
 .instructions-container {
   width: 100vw;
   height: 100vh;
-
   background-color: #F7F7F7;
+  img {
+    filter: blur(8px);
+    transition: 0.25s;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    &:hover {
+      filter: blur(0px);
+    }
+  }
   .instructions-nav {
     width: 260px;
     height: 100vh;
