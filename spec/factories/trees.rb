@@ -4,7 +4,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     price_per_year { rand(1..100) }
     address { Faker::Address.street_address }
-    quantity_by_year { rand(1..100) }
+    quantity_per_year { rand(1..100) }
     fruit { 'Apple' }
     description { Faker::Lorem.paragraph }
   end

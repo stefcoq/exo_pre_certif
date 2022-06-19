@@ -21,9 +21,9 @@ RSpec.describe Tree, type: :model do
     end
 
     it 'should not persist Tree without price_per_year' do
-      tree = FactoryBot.build(:tree, price_by_year: nil)
+      tree = FactoryBot.build(:tree, price_per_year: nil)
       tree.validate
-      expect(tree.errors.full_messages).to include("Price by year can't be blank")
+      expect(tree.errors.full_messages).to include("Price per year can't be blank")
     end
 
     it 'should not persist Tree without address' do
@@ -32,10 +32,10 @@ RSpec.describe Tree, type: :model do
       expect(tree.errors.full_messages).to include("Address can't be blank")
     end
 
-    it 'should not persist Tree without quantity_by_year' do
-      tree = FactoryBot.build(:tree, quantity_by_year: nil)
+    it 'should not persist Tree without quantity_per_year' do
+      tree = FactoryBot.build(:tree, quantity_per_year: nil)
       tree.validate
-      expect(tree.errors.full_messages).to include("Quantity by year can't be blank")
+      expect(tree.errors.full_messages).to include("Quantity per year can't be blank")
     end
 
     it 'should not persist Tree without fruit' do
@@ -56,22 +56,22 @@ RSpec.describe Tree, type: :model do
       expect(tree.errors.full_messages).to include("Fruit is not included in the list")
     end
 
-    it 'should not persist Tree with invalid price by year' do
-      tree = FactoryBot.build(:tree, price_by_year: -1)
-      tree_zero = FactoryBot.build(:tree, price_by_year: 0)
+    it 'should not persist Tree with invalid price per year' do
+      tree = FactoryBot.build(:tree, price_per_year: -1)
+      tree_zero = FactoryBot.build(:tree, price_per_year: 0)
       tree.validate
       tree_zero.validate
-      expect(tree.errors.full_messages).to include("Price by year must be greater than 0")
-      expect(tree_zero.errors.full_messages).to include("Price by year must be greater than 0")
+      expect(tree.errors.full_messages).to include("Price per year must be greater than 0")
+      expect(tree_zero.errors.full_messages).to include("Price per year must be greater than 0")
     end
 
-    it 'should not persist Tree with invalid quantity_by_year' do
-      tree = FactoryBot.build(:tree, quantity_by_year: -1)
-      tree_zero = FactoryBot.build(:tree, quantity_by_year: 0)
+    it 'should not persist Tree with invalid quantity_per_year' do
+      tree = FactoryBot.build(:tree, quantity_per_year: -1)
+      tree_zero = FactoryBot.build(:tree, quantity_per_year: 0)
       tree.validate
       tree_zero.validate
-      expect(tree.errors.full_messages).to include("Quantity by year must be greater than 0")
-      expect(tree_zero.errors.full_messages).to include("Quantity by year must be greater than 0")
+      expect(tree.errors.full_messages).to include("Quantity per year must be greater than 0")
+      expect(tree_zero.errors.full_messages).to include("Quantity per year must be greater than 0")
     end
 
     it 'should not persist Tree with invalid description' do
