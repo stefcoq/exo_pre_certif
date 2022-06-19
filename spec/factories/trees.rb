@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :tree do
     user
     name { Faker::Name.name }
-    price { rand(1..100) }
+    price_per_year { rand(1..100) }
     address { Faker::Address.street_address }
     quantity_by_year { rand(1..100) }
     fruit { 'Apple' }
