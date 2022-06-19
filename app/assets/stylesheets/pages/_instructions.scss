@@ -1,80 +1,134 @@
 .instructions-container {
-  padding: 1vh 4.3vh;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+
   background-color: #F7F7F7;
-  a {
-    color: rgb(0, 143, 214);
-    text-decoration: none;
-  }
-  .devise {
-    color: #D63384;
-  }
-  li {
-    color: rgba(0, 0, 0, 0.775);
-  }
-  .big-title {
-    font-size: 1.6em;
-    font-weight: bold;
-    margin-bottom: 1em;
-    color: rgba(0, 0, 0, 0.858);
-  }
-  .title {
-    font-size: 1.4em;
-    margin-bottom: 1em;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.803);
-  }
-  .subtitle {
-    font-size: 1.1em;
-    margin-bottom: 1em;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.784);
-    &.feature {
-      font-size: 1.2em;
+  .instructions-nav {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #E0E0E0;
+    .nav-logo {
+      height: 7vh;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 12px;
+      background-color: #F3F3F4;
+      p {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #3D3D3D;
+        margin: 0;
+      }
+    }
+    .nav-div {
+      height: 6vh;
+      margin: 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #EAEAEA;
+      &.link {
+        text-decoration: none;
+        background-color: #FAFAFA;
+        color: #7D7D7D;
+        &:hover {
+          background-color: #FFFFFF;
+        }
+      }
+      &.context {
+        background-color: #F3F3F4;
+        p {
+          color: #6D6D6E;
+        }
+      }
+      p {
+        margin: 0;
+      }
     }
   }
-  .paragraphe {
-    font-size: 1em;
-    margin-bottom: 1em;
-    color: rgba(0, 0, 0, 0.749);
-  }
-  .controller {
-    background-color: rgba(0, 0, 0, 0.13);
-    padding: 4px;
-    border-radius: 4px;
-  }
-  .seed {
-    background-color: #F5F5F5;
-    padding: 1em;
-    border-radius: 0.5em;
-    margin-bottom: 1em;
-    font-size: 1em;
-    width: 70%;
-    border: 1px solid rgba(0, 0, 0, 0.231);
-    .file {
-      color: #999988;
-      margin-bottom: 0.5em;
+  .instructions-content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 260px);
+    margin-left: 260px;
+    padding: 3vh;
+    a {
+      color: rgb(0, 143, 214);
+      text-decoration: none;
     }
-    .var {
-      color: #008080;
+    .devise {
+      color: #D63384;
     }
-    .class {
-      color: #008080;
-
+    li {
+      color: rgba(0, 0, 0, 0.775);
     }
-    .method {
-      color: #990001;
+    .big-title {
+      font-size: 1.6em;
       font-weight: bold;
+      margin-bottom: 1em;
+      color: rgba(0, 0, 0, 0.858);
     }
-    .attribute {
-      color: #990073;
+    .title {
+      font-size: 1.4em;
+      margin-bottom: 1em;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.803);
     }
-    .content {
-      color: #D00F40;
+    .subtitle {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.784);
+      &.feature {
+        font-size: 1.2em;
+      }
     }
+    .paragraphe {
+      font-size: 1em;
+      margin-bottom: 1em;
+      color: rgba(0, 0, 0, 0.749);
+    }
+    .controller {
+      background-color: rgba(0, 0, 0, 0.13);
+      padding: 4px;
+      border-radius: 4px;
+    }
+    .seed {
+      background-color: #F5F5F5;
+      padding: 1em;
+      border-radius: 0.5em;
+      margin-bottom: 1em;
+      font-size: 1em;
+      width: 70%;
+      border: 1px solid rgba(0, 0, 0, 0.231);
+      .file {
+        color: #999988;
+        margin-bottom: 0.5em;
+      }
+      .var {
+        color: #008080;
+      }
+      .class {
+        color: #008080;
 
+      }
+      .method {
+        color: #990001;
+        font-weight: bold;
+      }
+      .attribute {
+        color: #990073;
+      }
+      .content {
+        color: #D00F40;
+      }
+
+    }
   }
 }
