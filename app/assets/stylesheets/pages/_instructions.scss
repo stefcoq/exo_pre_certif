@@ -4,6 +4,17 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #F7F7F7;
+  a {
+    color: rgb(0, 143, 214);
+    text-decoration: none;
+  }
+  .devise {
+    color: #D63384;
+  }
+  li {
+    color: rgba(0, 0, 0, 0.775);
+  }
   .big-title {
     font-size: 1.6em;
     font-weight: bold;
@@ -29,5 +40,41 @@
     font-size: 1em;
     margin-bottom: 1em;
     color: rgba(0, 0, 0, 0.749);
+  }
+  .controller {
+    background-color: rgba(0, 0, 0, 0.13);
+    padding: 4px;
+    border-radius: 4px;
+  }
+  .seed {
+    background-color: #F5F5F5;
+    padding: 1em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.231);
+    .file {
+      color: #999988;
+      margin-bottom: 0.5em;
+    }
+    .var {
+      color: #008080;
+    }
+    .class {
+      color: #008080;
+
+    }
+    .method {
+      color: #990001;
+      font-weight: bold;
+    }
+    .attribute {
+      color: #990073;
+    }
+    .content {
+      color: #D00F40;
+    }
+
   }
 }
