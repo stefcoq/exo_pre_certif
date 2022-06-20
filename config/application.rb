@@ -17,7 +17,7 @@ module AdopteUnArbreRspec
     end
 
     config.i18n.available_locales = %i[fr en]
-    config.i18n.default_locale = :fr
+    config.i18n.default_locale = :en
     config.fallbacks = true
 
     # Initialize configuration defaults for originally generated Rails version.
