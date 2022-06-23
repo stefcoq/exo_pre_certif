@@ -1,0 +1,13 @@
+<div>
+  <h1>Trees</h1>
+</div>
+
+  <div class="card_container">
+    <% @trees.each do |tree| %>
+
+        <div class="card_tree">
+          <p><%= tree.name %></p>
+        </div>
+
+    <% end %>
+  </div>

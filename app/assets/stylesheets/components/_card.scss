@@ -1,0 +1,16 @@
+.card_container {
+  width: auto;
+  height: auto;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.card_tree {
+  background-color: aqua;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
